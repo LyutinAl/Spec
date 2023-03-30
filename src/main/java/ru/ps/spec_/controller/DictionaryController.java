@@ -1,9 +1,10 @@
 package ru.ps.spec_.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.ps.spec_.entity.DictionaryElement;
 import ru.ps.spec_.service.DictionaryService;
 
@@ -23,5 +24,12 @@ public class DictionaryController {
     @PostMapping(value = "/saveElement")
     public void saveElement(@RequestBody DictionaryElement dictionaryElement) {
         dictionaryService.saveDictionaryElement(dictionaryElement);
+    }
+
+    @PostMapping(value = "/deleteBranch/{id}")
+    public ResponseEntity<String> deleteBranchById(@PathVariable Long id) {
+            dictionaryService.deleteIfAllChildrenNoIsStandard(id);
+            return new ResponseEntity<>("Branch with id " + id + " deleted successfully", HttpStatus.OK);
+
     }
 }

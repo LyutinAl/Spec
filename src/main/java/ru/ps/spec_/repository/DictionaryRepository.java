@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface DictionaryRepository extends JpaRepository<DictionaryElement, Long> {
-    Optional<List<DictionaryElement>> findAllByOrderBySectionNameAscDepthAsc();
+    Optional<List<DictionaryElement>> findAllByOrderByParentIdAscDepthAscSectionNameAsc();
 }

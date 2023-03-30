@@ -1,11 +1,11 @@
 package ru.ps.spec_.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.web.bind.annotation.RequestAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "dictionary")
@@ -41,6 +40,10 @@ public class DictionaryElement {
     @Column(name = "depth")
     private Integer depth;
 
-    @Column(name = "is_standard")
+    @Column(name = "is_standard", nullable = false)
     private Boolean isStandard;
+
+    public DictionaryElement() {
+        this.isStandard = false;
+    }
 }
