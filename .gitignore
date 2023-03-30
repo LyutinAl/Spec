@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### H2 ###
-.trace.db
+/src/main/resources/database/demobase.trace.db
