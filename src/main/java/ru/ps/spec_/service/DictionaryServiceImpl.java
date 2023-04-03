@@ -29,6 +29,16 @@ public class DictionaryServiceImpl implements DictionaryService{
     }
 
     @Override
+    public String updateDictionaryElement(DictionaryElement dictionaryElement) {
+        if (dictionaryRepository.existsById(dictionaryElement.getId())) {
+            dictionaryRepository.save(dictionaryElement);
+            return "Dictionary element with id " + dictionaryElement.getId() + " updated";
+        }
+        dictionaryRepository.save(dictionaryElement);
+        return "Dictionary element with id " + dictionaryElement.getId() + " not exist and was created";
+    }
+
+    @Override
     public void deleteIfAllChildrenNoIsStandard(Long id) {
         DictionaryElement dictionaryElement = dictionaryRepository.findById(id)
                 .orElseThrow(() -> new DictionaryElementNotFoundException(id));

@@ -1,5 +1,6 @@
 package ru.ps.spec_.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,9 +25,17 @@ public class StandardItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "dictionary_id", referencedColumnName = "id")
-    private DictionaryElement dictionaryElement;
+    @Column(name = "dictionary_id")
+    private Long dictionaryId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dictionary_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JsonIgnore
+    private DictionaryElement parent;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DictionaryElement> children = new ArrayList<>();
 
     @Column(name = "catalog_code")
     private Long catalogCode;
