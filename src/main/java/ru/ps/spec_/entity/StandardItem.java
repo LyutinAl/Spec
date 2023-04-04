@@ -25,7 +25,7 @@ public class StandardItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "dictionary_id")
+    @Column(name = "dictionary_id", unique = true)
     private Long dictionaryId;
 
     @Column(name = "catalog_code")

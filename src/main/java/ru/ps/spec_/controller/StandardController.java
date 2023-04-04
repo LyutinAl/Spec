@@ -10,11 +10,12 @@ import ru.ps.spec_.service.StandardService;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/standards")
+@CrossOrigin(origins = "*")
 public class StandardController {
 
     private StandardService standardService;
 
-    @PostMapping(value = "/getBiId/{id}")
+    @PostMapping(value = "/getById/{id}")
     public ResponseEntity<StandardItem> getStandardById(@PathVariable Long id) {
         standardService.getStandardById(id);
         return new ResponseEntity<>(standardService.getStandardById(id), HttpStatus.OK);

@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/Dictionary")
+@CrossOrigin(origins = "*")
 public class DictionaryController {
 
     private DictionaryService dictionaryService;
