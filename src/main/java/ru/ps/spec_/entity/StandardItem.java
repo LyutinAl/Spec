@@ -28,15 +28,6 @@ public class StandardItem {
     @Column(name = "dictionary_id")
     private Long dictionaryId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dictionary_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @JsonIgnore
-    private DictionaryElement parent;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DictionaryElement> children = new ArrayList<>();
-
     @Column(name = "catalog_code")
     private Long catalogCode;
 
