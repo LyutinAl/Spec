@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface StandardsRepository extends JpaRepository<StandardItem, Long> {
     Optional<StandardItem> findByDictionaryId(Long dictionaryId);
+
+    Boolean existsByDictionaryId(Long dictionaryId);
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.ps.spec_.entity.StandardItem;
 import ru.ps.spec_.exception.StandardNotFoundByDictionaryIdException;
 import ru.ps.spec_.exception.StandardNotFoundByIdException;
+import ru.ps.spec_.exception.StandardWithDictionaryIdAlreadyExistException;
 import ru.ps.spec_.repository.StandardsRepository;
 
 @Service
@@ -27,12 +28,21 @@ public class StandardServiceImpl implements StandardService {
 
     @Override
     public void deleteStandardById(Long id) {
-        standardsRepository.deleteById(id);
+        if (standardsRepository.existsById(id)) {
+            standardsRepository.deleteById(id);
+        } else {
+            throw  new StandardNotFoundByIdException(id);
+        }
     }
 
     @Override
     public void saveStandard(StandardItem standardItem) {
-        standardsRepository.save(standardItem);
+        if (!standardsRepository.existsByDictionaryId(standardItem.getDictionaryId())) {
+            standardsRepository.save(standardItem);
+        } else {
+            throw new StandardWithDictionaryIdAlreadyExistException(standardItem.getDictionaryId());
+        }
+
     }
 
     @Override
@@ -40,8 +50,8 @@ public class StandardServiceImpl implements StandardService {
         if (standardsRepository.existsById(standardItem.getId())) {
             standardsRepository.save(standardItem);
             return "Standard with id " + standardItem.getId() + " updated";
+        }else {
+            throw new StandardNotFoundByIdException(standardItem.getId());
         }
-        standardsRepository.save(standardItem);
-        return "Standard with id " + standardItem.getId() + " not exist and was created";
     }
 }

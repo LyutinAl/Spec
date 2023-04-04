@@ -12,10 +12,16 @@ import java.util.Collections;
 public class ApplicationExceptionHandler {
 
     @ExceptionHandler({DictionaryElementNotFoundException.class, StandardNotFoundByIdException.class,
-            StandardNotFoundByDictionaryIdException.class, StandardWithDictionaryIdAlreadyExistException.class})
+            StandardNotFoundByDictionaryIdException.class})
     public ResponseEntity<Object> handlerElementNotFoundException(IllegalArgumentException ex) {
         ErrorResponse error = new ErrorResponse(Collections.singletonList(ex.getMessage()));
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({StandardWithDictionaryIdAlreadyExistException.class})
+    public ResponseEntity<Object> handlerStandardWithDictionaryIdAlreadyExistException(IllegalStateException ex) {
+        ErrorResponse error = new ErrorResponse(Collections.singletonList(ex.getMessage()));
+        return new ResponseEntity<>(error, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(SomeChildHasStandardException.class)
