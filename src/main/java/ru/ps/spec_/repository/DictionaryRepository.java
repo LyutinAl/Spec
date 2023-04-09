@@ -10,4 +10,7 @@ import java.util.Optional;
 @Repository
 public interface DictionaryRepository extends JpaRepository<DictionaryElement, Long> {
     Optional<List<DictionaryElement>> findAllByOrderByParentIdAscDepthAscSectionNameAsc();
+    Optional<List<DictionaryElement>> findByParentIdIsNullOrderBySectionNameAsc();
+
+    Optional<List<DictionaryElement>> findByParentIdOrderBySectionNameAsc(Long parentId);
 }

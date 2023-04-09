@@ -22,6 +22,16 @@ public class DictionaryController {
         return dictionaryService.getSortedElements();
     }
 
+    @PostMapping(value = "/getRootContent")
+    public List<DictionaryElement> getRootDictionary() {
+        return dictionaryService.getRootElements();
+    }
+
+    @PostMapping(value = "/getByParentId/{id}")
+    public List<DictionaryElement> getByParentId(@PathVariable Long id) {
+        return dictionaryService.getByParentId(id);
+    }
+
     @PostMapping(value = "/saveElement")
     public void saveElement(@RequestBody DictionaryElement dictionaryElement) {
         dictionaryService.saveDictionaryElement(dictionaryElement);

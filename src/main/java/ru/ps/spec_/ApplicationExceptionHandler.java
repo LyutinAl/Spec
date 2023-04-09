@@ -12,7 +12,8 @@ import java.util.Collections;
 public class ApplicationExceptionHandler {
 
     @ExceptionHandler({DictionaryElementNotFoundException.class, StandardNotFoundByIdException.class,
-            StandardNotFoundByDictionaryIdException.class})
+            StandardNotFoundByDictionaryIdException.class, DictionaryIsEmptyException.class,
+            DictionaryElementNotFoundByParentIdException.class})
     public ResponseEntity<Object> handlerElementNotFoundException(IllegalArgumentException ex) {
         ErrorResponse error = new ErrorResponse(Collections.singletonList(ex.getMessage()));
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
