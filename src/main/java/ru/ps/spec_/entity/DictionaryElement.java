@@ -13,6 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @Entity
 @Table(name = "dictionary")

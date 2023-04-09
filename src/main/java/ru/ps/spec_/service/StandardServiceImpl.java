@@ -46,10 +46,9 @@ public class StandardServiceImpl implements StandardService {
     }
 
     @Override
-    public String updateStandard(StandardItem standardItem) {
+    public StandardItem updateStandard(StandardItem standardItem) {
         if (standardsRepository.existsById(standardItem.getId())) {
-            standardsRepository.save(standardItem);
-            return "Standard with id " + standardItem.getId() + " updated";
+            return standardsRepository.save(standardItem);
         }else {
             throw new StandardNotFoundByIdException(standardItem.getId());
         }

@@ -14,5 +14,5 @@ public interface StandardService {
 
     public void deleteStandardById(Long id);
 
-    public String updateStandard(StandardItem standardItem);
+    public StandardItem updateStandard(StandardItem standardItem);
 }

@@ -13,7 +13,7 @@ public interface DictionaryService {
 
     public void saveDictionaryElement(DictionaryElement dictionaryElement);
 
-    public String updateDictionaryElement(DictionaryElement dictionaryElement);
+    public DictionaryElement updateDictionaryElement(DictionaryElement dictionaryElement);
 
     public void deleteIfAllChildrenNoIsStandard(Long id);
 }
