@@ -62,6 +62,5 @@ public class DictionaryController {
             dictionaryService.deleteIfAllChildrenNoIsStandard(id);
             log.info("New query " + LocalDateTime.now() + " Deleted branch with id " + id);
             return HttpStatus.NO_CONTENT;
-
     }
 }

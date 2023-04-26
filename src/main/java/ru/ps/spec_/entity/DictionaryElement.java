@@ -1,6 +1,7 @@
 package ru.ps.spec_.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "dictionary")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class DictionaryElement {
 
     @Id

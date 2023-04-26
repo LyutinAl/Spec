@@ -10,7 +10,7 @@
     </parent>
     <groupId>ru.ps</groupId>
     <artifactId>spec</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <name>spec</name>
     <description>
         Changed exceptions, did it more spring-boot canon
