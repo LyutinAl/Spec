@@ -26,11 +26,14 @@ public class StandardItem {
     @Column(name = "dictionary_id", unique = true)
     private Long dictionaryId;
 
-    @Column(name = "catalog_code")
-    private Long catalogCode;
+    @Column(name = "nom_code")
+    private Long nomlogCode;
 
-    @Column(name = "symbol")
-    private String symbol;
+    @Column(name = "nom_neme")
+    private String nomNeme;
+
+    @Column(name = "nom_size")
+    private String nomSize;
 
     @Column(name = "possible_of_using")
     private Boolean possibleOfUsing;
