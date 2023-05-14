@@ -27,10 +27,10 @@ public class StandardItem {
     private Long dictionaryId;
 
     @Column(name = "nom_code")
-    private Long nomlogCode;
+    private Long nomCode;
 
-    @Column(name = "nom_neme")
-    private String nomNeme;
+    @Column(name = "nom_name")
+    private String nomName;
 
     @Column(name = "nom_size")
     private String nomSize;
